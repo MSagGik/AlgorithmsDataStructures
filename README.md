@@ -8,7 +8,7 @@
 ### [в) Алгоритм Кнута-Морриса-Пратта](documentation/search/KNUTH_MORRIS_PRATT.md)
 </details>
 
-## [2) Фраклалы](documentation/RECURSIVE_ALGORITHM.md)
+## [2) Фракталы](documentation/RECURSIVE_ALGORITHM.md)
 ## [3) Сортировки]()
 <details><summary>Список сортировок</summary>
 
