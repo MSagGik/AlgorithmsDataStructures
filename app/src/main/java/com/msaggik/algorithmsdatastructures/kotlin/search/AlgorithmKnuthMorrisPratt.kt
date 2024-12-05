@@ -21,7 +21,7 @@ object AlgorithmKnuthMorrisPratt {
     fun prefixFunction(text: String): IntArray {
         val prefixFun = IntArray(text.length)
         prefixFun[0] = 0
-        for (i in 1 until text.length) {
+        for (i in 1 ..< text.length) {
             var j = prefixFun[i - 1]
             while (j > 0 && (text[i] != text[j])) j = prefixFun[j - 1]
             if (text[i] == text[j]) j += 1
@@ -30,7 +30,7 @@ object AlgorithmKnuthMorrisPratt {
         return prefixFun
     }
 
-    fun searchNumberOfSubstrings(text: String, substrings: String): Int {
+    fun searchNumberOfSubstringsV1(text: String, substrings: String): Int {
         if (text.isEmpty() || substrings.isEmpty() || text.length < substrings.length) return 0
 
         val prefixFun = prefixFunction(text)
@@ -54,5 +54,21 @@ object AlgorithmKnuthMorrisPratt {
         } while (i < text.length)
 
         return substringEntryIndices.size
+    }
+
+    fun searchNumberOfSubstringsV2(text: String, substrings: String): Int {
+        if (text.isEmpty() || substrings.isEmpty() || text.length < substrings.length) return 0
+
+        val combined = substrings + '\uFFFF' + text
+        val prefixFun = prefixFunction(combined)
+
+        var count = 0
+        for (i in substrings.length + 1 ..< combined.length) {
+            if (prefixFun[i] == substrings.length) {
+                count++
+            }
+        }
+
+        return count
     }
 }

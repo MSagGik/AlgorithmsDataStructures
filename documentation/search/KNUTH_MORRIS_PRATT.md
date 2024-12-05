@@ -80,7 +80,7 @@ object AlgorithmKnuthMorrisPratt {
         return prefixFun
     }
 
-    fun searchNumberOfSubstrings(text: String, substrings: String): Int {
+    fun searchNumberOfSubstringsV1(text: String, substrings: String): Int {
         if (text.isEmpty() || substrings.isEmpty() || text.length < substrings.length) return 0
 
         val prefixFun = prefixFunction(text)
@@ -104,6 +104,22 @@ object AlgorithmKnuthMorrisPratt {
         } while (i < text.length)
 
         return substringEntryIndices.size
+    }
+    
+    fun searchNumberOfSubstringsV2(text: String, substrings: String): Int {
+        if (text.isEmpty() || substrings.isEmpty() || text.length < substrings.length) return 0
+
+        val combined = substrings + '\uFFFF' + text
+        val prefixFun = prefixFunction(combined)
+        
+        var count = 0
+        for (i in substrings.length + 1 ..< combined.length) {
+            if (prefixFun[i] == substrings.length) {
+                count++
+            }
+        }
+
+        return count
     }
 }
 ```
@@ -163,9 +179,16 @@ class AlgorithmKnuthMorrisPrattTest {
     }
 
     @Test(timeout = 100)
-    fun testAlgorithmKnuthMorrisPrattTree() {
+    fun testAlgorithmKnuthMorrisPrattTreeV1() {
         val result =
-            AlgorithmKnuthMorrisPratt.searchNumberOfSubstrings(stringTestTree, subStringTestTree)
+            AlgorithmKnuthMorrisPratt.searchNumberOfSubstringsV1(stringTestTree, subStringTestTree)
+        Assert.assertEquals(result.toLong(), testTree.toLong())
+    }
+
+    @Test(timeout = 100)
+    fun testAlgorithmKnuthMorrisPrattTreeV2() {
+        val result =
+            AlgorithmKnuthMorrisPratt.searchNumberOfSubstringsV2(stringTestTree, subStringTestTree)
         Assert.assertEquals(result.toLong(), testTree.toLong())
     }
 }

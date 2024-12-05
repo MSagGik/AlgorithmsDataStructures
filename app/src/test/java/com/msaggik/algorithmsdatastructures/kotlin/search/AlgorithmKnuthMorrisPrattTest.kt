@@ -25,9 +25,16 @@ class AlgorithmKnuthMorrisPrattTest {
     }
 
     @Test(timeout = 100)
-    fun testAlgorithmKnuthMorrisPrattTree() {
+    fun testAlgorithmKnuthMorrisPrattTreeV1() {
         val result =
-            AlgorithmKnuthMorrisPratt.searchNumberOfSubstrings(stringTestTree, subStringTestTree)
+            AlgorithmKnuthMorrisPratt.searchNumberOfSubstringsV1(stringTestTree, subStringTestTree)
+        Assert.assertEquals(result.toLong(), testTree.toLong())
+    }
+
+    @Test(timeout = 100)
+    fun testAlgorithmKnuthMorrisPrattTreeV2() {
+        val result =
+            AlgorithmKnuthMorrisPratt.searchNumberOfSubstringsV2(stringTestTree, subStringTestTree)
         Assert.assertEquals(result.toLong(), testTree.toLong())
     }
 }
