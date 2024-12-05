@@ -6,7 +6,7 @@ object TwoPointers {
         var right = arrayInt.size - 1
         while (left < right) {
             if (arrayInt[left] + arrayInt[right] == sum) return true
-            else if (arrayInt[left] + arrayInt[right] <= sum) left++
+            else if (arrayInt[left] + arrayInt[right] < sum) left++
             else right--
         }
         return false

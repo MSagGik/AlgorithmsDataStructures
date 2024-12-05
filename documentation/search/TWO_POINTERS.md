@@ -21,7 +21,7 @@ public class TwoPointers {
         int left = 0, right = arrayInt.length - 1;
         while (left < right) {
             if (arrayInt[left] + arrayInt[right] == sum) return true;
-            else if (arrayInt[left] + arrayInt[right] <= sum) left++;
+            else if (arrayInt[left] + arrayInt[right] < sum) left++;
             else right--;
         }
         return false;
@@ -37,7 +37,7 @@ class TwoPointers {
             var right = arrayInt.size - 1
             while (left < right) {
                 if (arrayInt[left] + arrayInt[right] == sum) return true
-                else if (arrayInt[left] + arrayInt[right] <= sum) left++
+                else if (arrayInt[left] + arrayInt[right] < sum) left++
                 else right--
             }
             return false
